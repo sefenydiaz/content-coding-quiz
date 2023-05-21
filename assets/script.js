@@ -101,5 +101,28 @@ function showQuestions(jsQuestions, quizId){
 
 showQuestions(jsQuestions, quizId);
 
+// function to show correct results 
+function showResults(jsQuestions, quizId, resultsId){
+    var answerClass = quizId.querySelectorAll('.answers');
+    var userAnswer = '';
+    var numberCorrect = 0;
+
+    for(var i=0; i<jsQuestions.length; i++){
+       userAnswer =  (answerClass[i].querySelector('input[name=question'+i+']:checked')||{}).value;
+
+       if(userAnswer===questions[i].correctAnswer){
+        numberCorrect++;
+
+        answerClass[i].style.color = 'palevioletred';
+       }
+       else{
+        answerClass[i].style.color = 'lightblue';
+       }
+    }
+
+    resultsId.innerHTML = numberCorrect + ' out of ' + questions.length;
+}
+
 
 // INITIALIZATION
+startQuiz(jsQuestions, quizId, resultsId, submitButton);
