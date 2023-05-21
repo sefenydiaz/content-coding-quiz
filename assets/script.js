@@ -4,9 +4,11 @@
 
 
 // DATA 
+// variables for DOM 
 var quizId = document.getElementById('quiz');
 var resultsId = document.getElementById('results');
 var submitButton = document.getElementById('submit');
+// variable for quiz questions
 var jsQuestions = [
     {
         // COME UP WITH QUESTION 1 !!
@@ -53,6 +55,7 @@ var jsQuestions = [
 
 
 // FUNCTIONS 
+// function to start quiz
 function startQuiz(jsQuestions, quizId, resultsId, submitButton) {
 
     function showQuestions(jsQuestions, quizId){
@@ -70,6 +73,33 @@ function startQuiz(jsQuestions, quizId, resultsId, submitButton) {
     }
 }
 
+// function to show questions for user
+function showQuestions(jsQuestions, quizId){
+    var output = [];
+    var answers; 
+
+    for(var i=0; i<jsQuestions.length; i++){
+        answers = [];
+        for(letter in jsQuestions[i].answers){
+            answers.push(
+                '<label>'
+                    + '<input type="radio" name="question'+i+'"value="'+letter+'">'
+                    + letter + ': '
+                    + jsQuestions[i].answers[letter]
+                    + '</label>'
+            );
+        }
+
+        output.push(
+            '<div class="question">' + jsQuestions[i].question + '</div>'
+            + '<div class="answers">' + answers.join('') + '</div>'
+        );
+    }
+
+    quizId.innerHTML = output.join('');
+}
+
+showQuestions(jsQuestions, quizId);
 
 
 // INITIALIZATION
