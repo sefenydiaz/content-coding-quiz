@@ -8,7 +8,7 @@ var mainEl = document.getElementById("main");
 // variables for DOM 
 var quizId = document.getElementById('quiz');
 var resultsId = document.getElementById('results');
-var submitButton = document.getElementById('submit');
+var submitButton = document.getElementById('submit').addEventListener("click", showResults);
 var secondsLeft = 60;
 // variable for quiz questions
 var jsQuestions = [
@@ -90,7 +90,7 @@ function startQuiz(jsQuestions, quizId, resultsId, submitButton) {
     showQuestions(jsQuestions, quizId);
 
     submitButton.onclick = function() {
-        showResults(jsQuestions, quizId, resultsId );
+        showResults(jsQuestions, quizId, resultsId);
     }
 }
 
@@ -131,7 +131,7 @@ function showResults(jsQuestions, quizId, resultsId){
     for(var i=0; i<jsQuestions.length; i++){
        userAnswer =  (answerClass[i].querySelector('input[name=question'+i+']:checked')||{}).value;
 
-       if(userAnswer===questions[i].correctAnswer){
+       if(userAnswer===jsQuestions[i].correctAnswer){
         numberCorrect++;
 
         answerClass[i].style.color = 'palevioletred';
@@ -141,7 +141,7 @@ function showResults(jsQuestions, quizId, resultsId){
        }
     }
 
-    resultsId.innerHTML = numberCorrect + ' out of ' + questions.length;
+    resultsId.innerHTML = numberCorrect + ' out of ' + jsQuestions.length;
 }
 
 
