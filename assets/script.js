@@ -1,6 +1,7 @@
 // DEPENDENCIES / DOM
-
-
+// variable for timer
+var timeEl = document.querySelector(".time");
+var mainEl = document.getElementById("main");
 
 
 // DATA 
@@ -8,6 +9,7 @@
 var quizId = document.getElementById('quiz');
 var resultsId = document.getElementById('results');
 var submitButton = document.getElementById('submit');
+var secondsLeft = 60;
 // variable for quiz questions
 var jsQuestions = [
     {
@@ -55,6 +57,25 @@ var jsQuestions = [
 
 
 // FUNCTIONS 
+// function to start timer
+function setTime() {
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timeEl.textContent = secondsLeft + " seconds remaining.";
+
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+            sendMessage();
+        }
+    }, 1000); // <-- number of miliseconds between intervals
+}
+
+function sendMessage() {
+ timeEl.textContent = "You're done!! Now go take a nap!";
+ var imgEl = document.createElement("img");
+ imgEl.setAttribute("src", "assets/images/sleeping cat.png")
+ mainEl.appendChild(imgEl);
+}
 // function to start quiz
 function startQuiz(jsQuestions, quizId, resultsId, submitButton) {
 
@@ -125,4 +146,5 @@ function showResults(jsQuestions, quizId, resultsId){
 
 
 // INITIALIZATION
+setTime();
 startQuiz(jsQuestions, quizId, resultsId, submitButton);
