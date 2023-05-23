@@ -11,10 +11,17 @@
 <body>
 <header class="time" style="text-align:right;"></header>
 <main id="main">
-
+<div id="welcome">
 <h1>Welcome to the Coding Quiz Challenge! Take this timed quiz to test your knowledge on JavaScript!</h1>
 <button id="start">Start</button>
-    <div id="quiz"></div>
+</div>
+    <div id="quiz" class="hidden">
+        <h3 id="question"></h3>
+        <button id="ans1"></button>
+        <button id="ans2"></button>
+        <button id="ans3"></button>
+        <button id="ans4"></button>
+    </div>
 
 <div id="results"></div>
 <button id="submit">Submit</button>

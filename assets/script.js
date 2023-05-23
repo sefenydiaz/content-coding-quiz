@@ -2,14 +2,19 @@
 // variable for timer
 var timeEl = document.querySelector(".time");
 var mainEl = document.getElementById("main");
-
-
+var startBtnEl = document.getElementById("start");
+var questionEl = document.getElementById("question");
+var ans1El = document.getElementById("ans1");
+var ans2El = document.getElementById("ans2");
+var ans3El = document.getElementById("ans3");
+var ans4El = document.getElementById("ans4");
+var welcome = document.getElementById("welcome");
 // DATA 
 // variables for DOM 
 var quizId = document.getElementById('quiz');
 var resultsId = document.getElementById('results');
 // add event listener ?
-var submitButton = document.getElementById('submit').addEventListener("click", showResults);
+var submitButton = document.getElementById('submit')
 var secondsLeft = 60;
 // variable for quiz questions
 var jsQuestions = [
@@ -69,6 +74,7 @@ var jsQuestions = [
     }
 ];
 
+var questionIndex = 0
 //jsQuestions.setAttribute("style", "margin: auto")
 
 // FUNCTIONS 
@@ -99,50 +105,54 @@ function sendMessage() {
  mainEl.appendChild(imgEl);
 }
 // function to start quiz
-function startQuiz(jsQuestions, quizId, resultsId, submitButton) {
+function startQuiz() {
+    welcome.classList.add("hidden")
+    quizId.classList.remove("hidden")
+    showQuestion()
 
-    function showQuestions(jsQuestions, quizId){
 
-    }
 
-    function showResults(jsQuestions, quizId, resultsId) {
+    // function showResults(jsQuestions, quizId, resultsId) {
 
-    }
+    // }
 
-    showQuestions(jsQuestions, quizId);
 
-    submitButton.onclick = function() {
-        showResults(jsQuestions, quizId, resultsId);
-    }
+
 }
 
 // function to show questions for user
-function showQuestions(jsQuestions, quizId){
-    var output = [];
-    var answers; 
+function showQuestion(){
+    var currentQuestion = jsQuestions[questionIndex]
+       questionEl.textContent = currentQuestion.question
+       ans1El.textContent = currentQuestion.answers.a
+       ans2El.textContent = currentQuestion.answers.b
+       ans3El.textContent = currentQuestion.answers.c
+       ans4El.textContent = currentQuestion.answers.d
+    // var output = [];
+    // var answers; 
 
-    for(var i=0; i<jsQuestions.length; i++){
-        answers = [];
-        for(letter in jsQuestions[i].answers){
-            answers.push(
-                '<label>'
-                    + '<input type="radio" name="question'+i+'"value="'+letter+'">'
-                    + letter + ': '
-                    + jsQuestions[i].answers[letter]
-                    + '</label>'
-            );
-        }
+    // for(var i=0; i<jsQuestions.length; i++){
+    //     answers = [];
+    //     for(letter in jsQuestions[i].answers){
+    //         answers.push(
+    //             '<label>'
+    //                 + '<input type="radio" name="question'+i+'"value="'+letter+'">'
+    //                 + letter + ': '
+    //                 + jsQuestions[i].answers[letter]
+    //                 + '</label>'
+    //         );
+    //     }
 
-        output.push(
-            '<div class="question">' + jsQuestions[i].question + '</div>'
-            + '<div class="answers">' + answers.join('') + '</div>'
-        );
-    }
+    //     output.push(
+    //         '<div class="question">' + jsQuestions[i].question + '</div>'
+    //         + '<div class="answers">' + answers.join('') + '</div>'
+    //     );
+    // }
 
-    quizId.innerHTML = output.join('');
+    // quizId.innerHTML = output.join('');
 }
 
-showQuestions(jsQuestions, quizId);
+///showQuestions(jsQuestions, quizId);
 
 // function to show correct results 
 function showResults(jsQuestions, quizId, resultsId){
@@ -165,8 +175,23 @@ function showResults(jsQuestions, quizId, resultsId){
 
     resultsId.innerHTML = numberCorrect + ' out of ' + jsQuestions.length;
 }
-
-
+function checkAnswer(event) {
+    console.log(event.target.textContent)
+    var currentQuestion = jsQuestions[questionIndex]
+    if(currentQuestion.correctAnswer === event.target.textContent){
+        console.log('correct!')
+    } else{
+        console.log('incorrect!')
+    }
+    questionIndex++
+    showQuestion();
+}
+startBtnEl.addEventListener('click', function(){
+    setTime();
+    startQuiz();
+})
+ans1El.addEventListener('click', checkAnswer)
+ans2El.addEventListener('click', checkAnswer)
+ans3El.addEventListener('click', checkAnswer)
+ans4El.addEventListener('click', checkAnswer)
 // INITIALIZATION
-setTime();
-startQuiz(jsQuestions, quizId, resultsId, submitButton);
