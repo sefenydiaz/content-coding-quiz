@@ -9,6 +9,7 @@ var ans2El = document.getElementById("ans2");
 var ans3El = document.getElementById("ans3");
 var ans4El = document.getElementById("ans4");
 var welcome = document.getElementById("welcome");
+var response = document.getElementById("response");
 // DATA 
 // variables for DOM 
 var quizId = document.getElementById('quiz');
@@ -87,12 +88,7 @@ function setTime() {
         if(secondsLeft === 0) {
             clearInterval(timerInterval);
             sendMessage();
-        // add an if statement to deduct 10 seconds for wrong answer
-        // if(correctAnswer === false) {
-        //     timeEl.textContent = (secondsLeft - 10) + "seconds remaining.";
-        //     timeEl.textContent = alert("Incorrect!");
-      
-        // }
+       
         }
     
     }, 1000); // <-- number of miliseconds between intervals
@@ -179,13 +175,13 @@ function checkAnswer(event) {
     console.log(event.target.textContent)
     var currentQuestion = jsQuestions[questionIndex]
     if(currentQuestion.correctAnswer === event.target.textContent){
-        console.log('correct!')
+        console.log('correct!');
+        response.textContent = "Correct!";
     } else{
-        console.log('incorrect!')
+        console.log('incorrect!');
         // add code to deduct time from timer from incorrect answers
-        //timeEl.textContent = (secondsLeft - 10) + "seconds remaining.";
-       // timeEl.textContent = alert("Incorrect!");
-      
+        secondsLeft = secondsLeft - 5;
+        response.textContent = "Incorrect!";
         }
         questionIndex++
         showQuestion();
