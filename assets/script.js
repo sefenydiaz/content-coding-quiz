@@ -8,53 +8,68 @@ var mainEl = document.getElementById("main");
 // variables for DOM 
 var quizId = document.getElementById('quiz');
 var resultsId = document.getElementById('results');
+// add event listener ?
 var submitButton = document.getElementById('submit').addEventListener("click", showResults);
 var secondsLeft = 60;
 // variable for quiz questions
 var jsQuestions = [
     {
         // COME UP WITH QUESTION 1 !!
-        question: "JS question 1",
+        question: "The condition in an if / else statement is enclosed with ____________.",
         answers: {
-            a: 'a',
-            b: 'b',
-            c: 'c',
+            a: 'quotes',
+            b: 'curly brackets',
+            c: 'parantheses',
+            d: 'square brackets'
         },
-        correctAnswer: 'b'
+        correctAnswer: 'c'
     },
     {
         // COME UP WITH QUESTION 2 !!!
-        question: "JS question 2",
+        question: "Arrays in JavaScript can be used to store ______________.",
         answers: {
-            a: 'a',
-            b: 'b',
-            c: 'c',
+            a: 'numbers and strings',
+            b: 'other arrays',
+            c: 'booleans',
+            d: 'all of the above',
         },
-        correctAnswer: 'a'
+        correctAnswer: 'd'
     },
     {
         // COME UP WITH QUESTION 3 !!!
-        question: "JS question 3",
+        question: "String values must be enclosed within ___________ when being assigned to variables.",
         answers: {
-            a: 'a',
-            b: 'b',
-            c: 'c',
+            a: 'commas',
+            b: 'curly brackets',
+            c: 'quotes',
+            d: 'parantheses',
         },
         correctAnswer: 'c'
     },
     {
         // COME UP WITH QUESTION 4 !!!
-        question: "JS question 4",
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
         answers: {
-            a: 'a',
-            b: 'b',
-            c: 'c',
+            a: 'JavaScript',
+            b: 'terminal/bash',
+            c: 'for loops',
+            d: 'console log',
         },
-        correctAnswer: 'a'
+        correctAnswer: 'd'
+    },
+    {
+        question: "Commonly used data types do NOT include:",
+        answers: {
+            a: 'strings',
+            b: 'booleans',
+            c: 'alerts',
+            d: 'numbers',
+        },
+        correctAnswer: 'c'
     }
 ];
 
-
+//jsQuestions.setAttribute("style", "margin: auto")
 
 // FUNCTIONS 
 // function to start timer
@@ -66,7 +81,14 @@ function setTime() {
         if(secondsLeft === 0) {
             clearInterval(timerInterval);
             sendMessage();
+        // add an if statement to deduct 10 seconds for wrong answer
+        if(correctAnswer === false) {
+            timeEl.textContent = (secondsLeft - 10) + "seconds remaining.";
+            timeEl.textContent = alert("Incorrect!");
+      
         }
+        }
+    
     }, 1000); // <-- number of miliseconds between intervals
 }
 
