@@ -75,7 +75,7 @@ var jsQuestions = [
 ];
 
 var questionIndex = 0
-//jsQuestions.setAttribute("style", "margin: auto")
+
 
 // FUNCTIONS 
 // function to start timer
@@ -88,11 +88,11 @@ function setTime() {
             clearInterval(timerInterval);
             sendMessage();
         // add an if statement to deduct 10 seconds for wrong answer
-        if(correctAnswer === false) {
-            timeEl.textContent = (secondsLeft - 10) + "seconds remaining.";
-            timeEl.textContent = alert("Incorrect!");
+        // if(correctAnswer === false) {
+        //     timeEl.textContent = (secondsLeft - 10) + "seconds remaining.";
+        //     timeEl.textContent = alert("Incorrect!");
       
-        }
+        // }
         }
     
     }, 1000); // <-- number of miliseconds between intervals
@@ -182,14 +182,21 @@ function checkAnswer(event) {
         console.log('correct!')
     } else{
         console.log('incorrect!')
+        // add code to deduct time from timer from incorrect answers
+        //timeEl.textContent = (secondsLeft - 10) + "seconds remaining.";
+       // timeEl.textContent = alert("Incorrect!");
+      
+        }
+        questionIndex++
+        showQuestion();
     }
-    questionIndex++
-    showQuestion();
-}
+    
+// starts the quiz using the start button
 startBtnEl.addEventListener('click', function(){
     setTime();
     startQuiz();
 })
+// listens for a click to check correct answer
 ans1El.addEventListener('click', checkAnswer)
 ans2El.addEventListener('click', checkAnswer)
 ans3El.addEventListener('click', checkAnswer)

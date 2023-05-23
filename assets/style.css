@@ -51,6 +51,14 @@ button:hover {
    
 }
 
+#highscores {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+
 #submit {
     display: flex;
     margin: auto;
