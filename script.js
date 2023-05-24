@@ -216,4 +216,11 @@ submitButton.addEventListener("click", function(event) {
     
     }
 });
+
+function saveHighscores() {
+    var highscores;
+    highscores = localStorage.getItem("highscores");
+    saveHighscores();
+
+}
 // INITIALIZATION
