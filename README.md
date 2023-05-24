@@ -4,11 +4,13 @@ Test your JavaScript knowledge by taking this quiz! This webpage functions as a 
 
 ## Installation
 
-There is no installation required for this webpage
+There is no installation required for this webpage.
 
 ## Screenshot 
 
-**** INSERT SCREENSHOT 
+The following image shows the web application's appearance and functionality:
+
+![portfolio screenshot](screenshot.png)
 
 ## Credits 
 Columbia Coding Bootcamp
@@ -16,4 +18,4 @@ Columbia Coding Bootcamp
 ## Conclusion
 
 The following webpage can be viewed at:
-***** ADD DEPLOYMENT LINK
+https://sefenydiaz.github.io/content-coding-quiz/
