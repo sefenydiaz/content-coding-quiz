@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/reset.css">
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./style.css">
     <title>Coding Quiz</title>
 </head>
 <body>
@@ -25,6 +25,12 @@
 <section id="response"></section>
 <div id="results"></div>
 
+<form method="POST">
+    <div class="input-group">
+        <label for="initials">Initials</label>
+        <input type="text" name="initials" id="initials" placeholder="SD" />
+    </div>
+</form>
 <section id="scoreboard">
     <p>Would you like to submit your score?</p>
     <button id="submit">Submit</button>
@@ -37,6 +43,6 @@
     </div>
 </section>
 </main>
-    <script src="./assets/script.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>

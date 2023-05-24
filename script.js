@@ -10,6 +10,8 @@ var ans3El = document.getElementById("ans3");
 var ans4El = document.getElementById("ans4");
 var welcome = document.getElementById("welcome");
 var response = document.getElementById("response");
+
+
 // DATA 
 // variables for DOM 
 var quizId = document.getElementById('quiz');
@@ -97,7 +99,7 @@ function setTime() {
 function sendMessage() {
  timeEl.textContent = "You're done!! Now go take a nap!";
  var imgEl = document.createElement("img");
- imgEl.setAttribute("src", "assets/images/sleeping cat.png")
+ imgEl.setAttribute("src", "sleeping cat.png")
  mainEl.appendChild(imgEl);
 }
 // function to start quiz
@@ -151,26 +153,26 @@ function showQuestion(){
 ///showQuestions(jsQuestions, quizId);
 
 // function to show correct results 
-function showResults(jsQuestions, quizId, resultsId){
-    var answerClass = quizId.querySelectorAll('.answers');
-    var userAnswer = '';
-    var numberCorrect = 0;
+// function showResults(jsQuestions, quizId, resultsId){
+//     var answerClass = quizId.querySelectorAll('.answers');
+//     var userAnswer = '';
+//     var numberCorrect = 0;
 
-    for(var i=0; i<jsQuestions.length; i++){
-       userAnswer =  (answerClass[i].querySelector('input[name=question'+i+']:checked')||{}).value;
+//     for(var i=0; i<jsQuestions.length; i++){
+//        userAnswer =  (answerClass[i].querySelector('input[name=question'+i+']:checked')||{}).value;
 
-       if(userAnswer===jsQuestions[i].correctAnswer){
-        numberCorrect++;
+//        if(userAnswer===jsQuestions[i].correctAnswer){
+//         numberCorrect++;
 
-        answerClass[i].style.color = 'palevioletred';
-       }
-       else{
-        answerClass[i].style.color = 'lightblue';
-       }
-    }
+//         answerClass[i].style.color = 'palevioletred';
+//        }
+//        else{
+//         answerClass[i].style.color = 'lightblue';
+//        }
+//     }
 
-    resultsId.innerHTML = numberCorrect + ' out of ' + jsQuestions.length;
-}
+//     resultsId.innerHTML = numberCorrect + ' out of ' + jsQuestions.length;
+// }
 function checkAnswer(event) {
     console.log(event.target.textContent)
     var currentQuestion = jsQuestions[questionIndex]
@@ -197,4 +199,21 @@ ans1El.addEventListener('click', checkAnswer)
 ans2El.addEventListener('click', checkAnswer)
 ans3El.addEventListener('click', checkAnswer)
 ans4El.addEventListener('click', checkAnswer)
+
+// HIGHSCORES CODE
+var initialsInput = document.querySelector("#initials");
+
+submitButton.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    var initials = document.querySelector("#initials").value;
+    if (initials === "") {
+        displayMessage("error", "Initials cannot be blank!");
+    } else {
+        displayMessage("success", "Your scores have been recorded!");
+
+        localStorage.setItem("initials", initials)
+    
+    }
+});
 // INITIALIZATION
